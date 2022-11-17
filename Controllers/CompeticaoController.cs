@@ -10,7 +10,7 @@ namespace CompeticaoBackend.Controllers{
     public class CompeticaoController : ControllerBase
     {
         [HttpGet]
-        [EnableCors("AllowSpecificOrigin")]
+        [EnableCors("AllowDev")]
         public IActionResult Get([FromServices]ICompeticaoRepository repository)
         {
             var competicao = repository.Read();
@@ -18,8 +18,8 @@ namespace CompeticaoBackend.Controllers{
         }
 
         [HttpPost]
-        [EnableCors("AllowSpecificOrigin")]
-        public IActionResult Post([FromBody]Competicao competicao, [FromServices]ICompeticaoRepository repository)
+        [EnableCors("AllowDev")]
+        public IActionResult Post([FromForm]Competicao competicao, [FromServices]ICompeticaoRepository repository)
         {
             if(!ModelState.IsValid)
                 return BadRequest();

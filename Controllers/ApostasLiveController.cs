@@ -11,7 +11,7 @@ namespace ApostasLiveBackend.Controllers{
     public class ApostasLiveController : ControllerBase
     {
         [HttpGet]
-        [EnableCors("AllowSpecificOrigin")]
+        [EnableCors("AllowDev")]
         public IActionResult Get([FromServices]IApostasLiveRepository repository)
         {
             var apostasLive = repository.Read();
@@ -19,8 +19,8 @@ namespace ApostasLiveBackend.Controllers{
         }
 
         [HttpPost]
-        [EnableCors("AllowSpecificOrigin")]
-        public IActionResult Post([FromBody]ApostasLive apostasLive, [FromServices]IApostasLiveRepository repository)
+        [EnableCors("AllowDev")]
+        public IActionResult Post([FromForm]ApostasLive apostasLive, [FromServices]IApostasLiveRepository repository)
         {
             if(!ModelState.IsValid)
                 return BadRequest();

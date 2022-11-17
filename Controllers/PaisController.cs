@@ -10,7 +10,7 @@ namespace PaisController.Controllers{
     public class PaisController : ControllerBase
     {
         [HttpGet]
-        [EnableCors("AllowSpecificOrigin")]
+        [EnableCors("AllowDev")]
         public IActionResult Get([FromServices]IPaisRepository repository)
         {
             var pais = repository.Read();
@@ -18,12 +18,12 @@ namespace PaisController.Controllers{
         }
 
         [HttpPost]
-        [EnableCors("AllowSpecificOrigin")]
-        public IActionResult Post([FromBody]Pais pais, [FromServices]IPaisRepository repository)
+        [EnableCors("AllowDev")]
+        public IActionResult Post([FromForm]Pais pais,[FromServices]IPaisRepository repository)
         {
             if(!ModelState.IsValid)
                 return BadRequest();
-            
+
             repository.Create(pais);
             return Ok();
         }

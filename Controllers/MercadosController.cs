@@ -10,7 +10,7 @@ namespace MercadosBackend.Controllers{
     public class MercadosController : ControllerBase
     {
         [HttpGet]
-        [EnableCors("AllowSpecificOrigin")]
+        [EnableCors("AllowDev")]
         public IActionResult Get([FromServices]IMercadosRepository repository)
         {
             var mercados = repository.Read();
@@ -18,8 +18,8 @@ namespace MercadosBackend.Controllers{
         }
 
         [HttpPost]
-        [EnableCors("AllowSpecificOrigin")]
-        public IActionResult Post([FromBody]Mercados mercados, [FromServices]IMercadosRepository repository)
+        [EnableCors("AllowDev")]
+        public IActionResult Post([FromForm]Mercados mercados, [FromServices]IMercadosRepository repository)
         {
             if(!ModelState.IsValid)
                 return BadRequest();

@@ -6,11 +6,11 @@ namespace ProjetoGabrielAPI.Models
 {
     public class Pais
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        // [Key]
+        // [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id {get; set;}
-        [Required]
-        public String Nome {get; set;}
+        //[Required]
+        public String nome {get; set;}
 
     }
 }

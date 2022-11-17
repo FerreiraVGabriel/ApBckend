@@ -8,10 +8,10 @@ namespace ProjetoGabrielAPI.Models
     {
         [Key]
         public int Id {get; set;}
-        [Required]
+        // [Required]
         public string Nome {get; set;}
-        [ForeignKey("PaisId")]
-        [Required]
+        // [ForeignKey("PaisId")]
+        // [Required]
         public int Pais_id {get; set;}
 
     }

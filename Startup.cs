@@ -25,7 +25,22 @@ namespace ProjetoGabrielAPI
         {
             services.AddDbContext<DataContext>(options=>options.UseSqlServer(Configuration.GetConnectionString("sql")));
             services.AddControllers();
+            //services.AddCors();
+            // services.AddCors(options =>
+            // {
+            //     options.AddPolicy("AllowDev",
+            //     //  builder => builder.WithOrigins("http://localhost:4200/").WithMethods("PUT", "DELETE", "GET")
+            //     builder => builder
+            //         .SetIsOriginAllowedToAllowWildcardSubdomains()
+            //         .WithOrigins("http://localhost:4200/")
+            //         .AllowAnyMethod()
+            //         .AllowCredentials()
+            //         .AllowAnyHeader()
+            //         .Build()
+            //      );
+            // });
             services.AddCors();
+            
 
             //REPOSITORY
             services.AddTransient<ITimesRepository, TimesRepository>();
@@ -46,7 +61,22 @@ namespace ProjetoGabrielAPI
             }
 
             app.UseRouting();
-            app.UseCors(option => option.AllowAnyOrigin());
+
+
+            // app.UseCors(options =>
+            // options.WithOrigins("http://localhost:4200")
+            // .AllowAnyMethod()
+            // .AllowAnyHeader()
+            // .AllowCredentials());
+
+                // global cors policy
+                app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true) 
+                .AllowCredentials()); 
+
+
 
             app.UseEndpoints(endpoints =>
             {

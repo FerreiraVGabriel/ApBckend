@@ -18,8 +18,8 @@ namespace TimesBackend.Controllers{
         }
 
         [HttpPost]
-        [EnableCors("AllowSpecificOrigin")]
-        public IActionResult Post([FromBody]Times times, [FromServices]ITimesRepository repository)
+        [EnableCors("AllowDev")]
+        public IActionResult Post([FromForm]Times times, [FromServices]ITimesRepository repository)
         {
             if(!ModelState.IsValid)
                 return BadRequest();

@@ -10,7 +10,7 @@ namespace ApostasBackend.Controllers{
     public class ApostasController : ControllerBase
     {
         [HttpGet]
-        [EnableCors("AllowSpecificOrigin")]
+        [EnableCors("AllowDev")]
         public IActionResult Get([FromServices]IApostasRepository repository)
         {
             var apostas = repository.Read();
@@ -18,8 +18,8 @@ namespace ApostasBackend.Controllers{
         }
 
         [HttpPost]
-        [EnableCors("AllowSpecificOrigin")]
-        public IActionResult Post([FromBody]Apostas apostas, [FromServices]IApostasRepository repository)
+        [EnableCors("AllowDev")]
+        public IActionResult Post([FromForm]Apostas apostas, [FromServices]IApostasRepository repository)
         {
             if(!ModelState.IsValid)
                 return BadRequest();

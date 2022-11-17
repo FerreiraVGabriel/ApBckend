@@ -10,7 +10,7 @@ namespace TipoApostaController.Controllers{
     public class TipoApostaController : ControllerBase
     {
         [HttpGet]
-        [EnableCors("AllowSpecificOrigin")]
+        [EnableCors("AllowDev")]
         public IActionResult Get([FromServices]ITipoApostaRepository repository)
         {
             var tipoAposta = repository.Read();
@@ -18,8 +18,8 @@ namespace TipoApostaController.Controllers{
         }
 
         [HttpPost]
-        [EnableCors("AllowSpecificOrigin")]
-        public IActionResult Post([FromBody]TipoAposta tipoAposta, [FromServices]ITipoApostaRepository repository)
+        [EnableCors("AllowDev")]
+        public IActionResult Post([FromForm]TipoAposta tipoAposta, [FromServices]ITipoApostaRepository repository)
         {
             if(!ModelState.IsValid)
                 return BadRequest();
