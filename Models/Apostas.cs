@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,6 +8,8 @@ namespace ProjetoGabrielAPI.Models
     public class Apostas
     {
         public int Id {get; set;}
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd/MM/yyyy}")]
         public DateTime DataAposta {get; set;}
         public decimal Stake {get; set;}
         public decimal PL {get; set;}

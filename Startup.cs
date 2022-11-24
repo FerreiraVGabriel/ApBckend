@@ -1,3 +1,4 @@
+using Microsoft.VisualBasic.CompilerServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ using ProjetoGabrielAPI.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using ProjetoGabrielAPI.Interfaces;
+using ProjetoGabrielAPI.Shared;
 
 namespace ProjetoGabrielAPI
 {
@@ -50,6 +52,9 @@ namespace ProjetoGabrielAPI
             services.AddTransient<IApostasRepository, ApostasRepository>();
             services.AddTransient<IApostasLiveRepository, ApostasLiveRepository>();
             services.AddTransient<ITipoApostaRepository, TipoApostaRepository>();
+
+            //Utils
+            services.AddTransient<UtilsProject>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -25,13 +25,11 @@ namespace ProjetoGabrielAPI.Repositories
         {
             _context.Add(apostas);
             _context.SaveChanges();
-            
         }
 
         public List<Apostas> Read()
         {
-            return _context.Apostas.ToList();
-            
+            return _context.Apostas.OrderBy(bet=>bet.DataAposta).ToList();
         }
     }
 }
