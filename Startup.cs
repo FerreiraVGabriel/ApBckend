@@ -52,6 +52,7 @@ namespace ProjetoGabrielAPI
             services.AddTransient<IApostasRepository, ApostasRepository>();
             services.AddTransient<IApostasLiveRepository, ApostasLiveRepository>();
             services.AddTransient<ITipoApostaRepository, TipoApostaRepository>();
+            services.AddTransient<IFiltrosRepository, FiltrosRepository>();
 
             //Utils
             services.AddTransient<UtilsProject>();

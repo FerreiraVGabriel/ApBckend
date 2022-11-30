@@ -14,5 +14,6 @@ namespace ProjetoGabrielAPI.Repositories{
         public DbSet<Apostas> Apostas {get; set;}
         public DbSet<ApostasLive> ApostasLive {get; set;}
         public DbSet<TipoAposta> TipoAposta {get; set;}
+        public DbSet<Filtro> Filtro {get; set;}
     }
 }
