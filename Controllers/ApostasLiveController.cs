@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProjetoGabrielAPI.Interfaces;
 using ProjetoGabrielAPI.Models;
 using ProjetoGabrielAPI.Repositories;
+using ProjetoGabrielAPI.Shared;
 
 namespace ApostasLiveBackend.Controllers{
 
@@ -20,10 +21,12 @@ namespace ApostasLiveBackend.Controllers{
 
         [HttpPost]
         [EnableCors("AllowDev")]
-        public IActionResult Post([FromForm]ApostasLive apostasLive, [FromServices]IApostasLiveRepository repository)
+        public IActionResult Post([FromForm]ApostasLive apostasLive, [FromServices]IApostasLiveRepository repository,[FromServices] UtilsProject utilsProject)
         {
             if(!ModelState.IsValid)
                 return BadRequest();
+
+            apostasLive.RoiStake = utilsProject.percentageReturns(apostasLive.Stake, apostasLive.PL);
             
             repository.Create(apostasLive);
             return Ok();
