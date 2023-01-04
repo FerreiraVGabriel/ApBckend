@@ -6418,11 +6418,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\estudos\\ProjetoGabrielAPI\\ProjetoGabrielAPI.csproj",
+      "projectUniqueName": "C:\\estudos\\ProjetoGabrielAPI\\ApBckend\\ProjetoGabrielAPI.csproj",
       "projectName": "ProjetoGabrielAPI",
-      "projectPath": "C:\\estudos\\ProjetoGabrielAPI\\ProjetoGabrielAPI.csproj",
+      "projectPath": "C:\\estudos\\ProjetoGabrielAPI\\ApBckend\\ProjetoGabrielAPI.csproj",
       "packagesPath": "C:\\Users\\gabriel.vitor\\.nuget\\packages\\",
-      "outputPath": "C:\\estudos\\ProjetoGabrielAPI\\obj\\",
+      "outputPath": "C:\\estudos\\ProjetoGabrielAPI\\ApBckend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

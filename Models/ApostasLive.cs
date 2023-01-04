@@ -25,7 +25,7 @@ namespace ProjetoGabrielAPI.Models
         [Required]
         public int Mercados_id {get; set;}
         public decimal Stake {get; set;}
-        public decimal MH1Casa {get; set;}
+        public decimal? MH1Casa {get; set;}
         public decimal? MH1Visitante {get; set;}
         public decimal? MH2Casa {get; set;}
         public decimal? MH2Visitante {get; set;}

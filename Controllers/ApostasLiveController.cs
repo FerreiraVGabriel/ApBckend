@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoGabrielAPI.Interfaces;
@@ -26,10 +28,21 @@ namespace ApostasLiveBackend.Controllers{
             if(!ModelState.IsValid)
                 return BadRequest();
 
-            apostasLive.RoiStake = utilsProject.percentageReturns(apostasLive.Stake, apostasLive.PL);
+            apostasLive.RoiStake = utilsProject.retornaPorcentagem(apostasLive.Stake, apostasLive.PL);
             
             repository.Create(apostasLive);
             return Ok();
+        }
+
+        [HttpGet("{idMercado}")]
+        [EnableCors("AllowDev")]
+        public IActionResult GetApostasLive(int idMercado,[FromServices]IApostasLiveRepository repository,[FromServices] UtilsProject utilsProject)
+        {
+            List<ApostasLive> apostasLive = repository.Read(idMercado).ToList();
+
+            List<ApostasLiveComTempo> returnApostasLiveComTempo = repository.GetEstatisticasApostasLive(apostasLive);
+
+            return Ok(returnApostasLiveComTempo);
         }
     }
 

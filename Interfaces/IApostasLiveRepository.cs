@@ -8,7 +8,11 @@ namespace ProjetoGabrielAPI.Interfaces
     {
         List<ApostasLive> Read();
 
+        List<ApostasLive> Read(int mercadoId);
+
         void Create (ApostasLive apostas);
+
+        List<ApostasLiveComTempo> GetEstatisticasApostasLive(List<ApostasLive> apostasLive);
     }
 }
    
