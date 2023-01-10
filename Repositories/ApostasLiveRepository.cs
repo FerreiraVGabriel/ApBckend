@@ -70,7 +70,7 @@ namespace ProjetoGabrielAPI.Repositories
             listEstatisticasApostasLive.Add(GetEstatisticasApostasLiveAPM2(apostasLives));
             listEstatisticasApostasLive.Add(GetEstatisticasApostasLiveCA(apostasLives));
             listEstatisticasApostasLive.Add(GetEstatisticasApostasLiveCFA(apostasLives));
-            listEstatisticasApostasLive.Add(GetEstatisticasApostasLivePosseBole(apostasLives));
+            listEstatisticasApostasLive.Add(GetEstatisticasApostasLivePosseBola(apostasLives));
             listEstatisticasApostasLive.Add(GetEstatisticasApostasLiveAtaques(apostasLives));
             listEstatisticasApostasLive.Add(GetEstatisticasApostasLiveAtaquesPerigosos(apostasLives));
             return listEstatisticasApostasLive;
@@ -403,7 +403,7 @@ namespace ProjetoGabrielAPI.Repositories
             return estatisticasApostasLive;
         }
 
-        public EstatisticasApostasLive GetEstatisticasApostasLivePosseBole(List<ApostasLive> listApostasLiveTempoJogo){
+        public EstatisticasApostasLive GetEstatisticasApostasLivePosseBola(List<ApostasLive> listApostasLiveTempoJogo){
              ApostasLiveComTempo returnApostasLiveComTempo = new ApostasLiveComTempo();
             if (listApostasLiveTempoJogo == null)
                 return null;
@@ -413,26 +413,31 @@ namespace ProjetoGabrielAPI.Repositories
             List<decimal?> listValoresMaioresVencedor = new List<decimal?>();
             List<decimal?> listValoresMenoresVencedor = new List<decimal?>();
             foreach(var apostasLiveTempoJogo in listApostasLiveTempoJogo){
-                if(apostasLiveTempoJogo.PosseBolaCasa >= apostasLiveTempoJogo.PosseBolaVisitante ){
+                if(apostasLiveTempoJogo.PosseBolaCasa != null && apostasLiveTempoJogo.PosseBolaVisitante != null){
+                    if(apostasLiveTempoJogo.PosseBolaCasa >= apostasLiveTempoJogo.PosseBolaVisitante ){
                     listValoresMaiores.Add(apostasLiveTempoJogo.PosseBolaCasa);
                     listValoresMenores.Add(apostasLiveTempoJogo.PosseBolaVisitante);
-                    if(apostasLiveTempoJogo.RoiStake > 0){
-                        listValoresMaioresVencedor.Add(apostasLiveTempoJogo.PosseBolaCasa);
-                        listValoresMenoresVencedor.Add(apostasLiveTempoJogo.PosseBolaVisitante);
+                        if(apostasLiveTempoJogo.RoiStake > 0){
+                            listValoresMaioresVencedor.Add(apostasLiveTempoJogo.PosseBolaCasa);
+                            listValoresMenoresVencedor.Add(apostasLiveTempoJogo.PosseBolaVisitante);
+                        }
                     }
-                }
-                else{
-                    listValoresMaiores.Add(apostasLiveTempoJogo.PosseBolaVisitante);
-                    listValoresMenores.Add(apostasLiveTempoJogo.PosseBolaCasa);
-                    if(apostasLiveTempoJogo.RoiStake > 0){
-                        listValoresMaioresVencedor.Add(apostasLiveTempoJogo.PosseBolaVisitante);
-                        listValoresMenoresVencedor.Add(apostasLiveTempoJogo.PosseBolaCasa);
+                    else{
+                        listValoresMaiores.Add(apostasLiveTempoJogo.PosseBolaVisitante);
+                        listValoresMenores.Add(apostasLiveTempoJogo.PosseBolaCasa);
+                        if(apostasLiveTempoJogo.RoiStake > 0){
+                            listValoresMaioresVencedor.Add(apostasLiveTempoJogo.PosseBolaVisitante);
+                            listValoresMenoresVencedor.Add(apostasLiveTempoJogo.PosseBolaCasa);
+                        }
                     }
                 }
             }
 
             EstatisticasApostasLive estatisticasApostasLive = new EstatisticasApostasLive();
-            estatisticasApostasLive = GetEstatisticas(listValoresMaiores, listValoresMenores, listValoresMaioresVencedor, listValoresMenoresVencedor);
+
+            if(listValoresMaiores.Any() && listValoresMenores.Any())
+                estatisticasApostasLive = GetEstatisticas(listValoresMaiores, listValoresMenores, listValoresMaioresVencedor, listValoresMenoresVencedor);
+
             estatisticasApostasLive.Titulo = "Posso de Bola";
 
             return estatisticasApostasLive;
@@ -448,26 +453,31 @@ namespace ProjetoGabrielAPI.Repositories
             List<decimal?> listValoresMaioresVencedor = new List<decimal?>();
             List<decimal?> listValoresMenoresVencedor = new List<decimal?>();
             foreach(var apostasLiveTempoJogo in listApostasLiveTempoJogo){
-                if(apostasLiveTempoJogo.AtaquesCasa >= apostasLiveTempoJogo.AtaquesVisitante ){
+                if(apostasLiveTempoJogo.AtaquesCasa != null && apostasLiveTempoJogo.AtaquesVisitante != null){
+                    if(apostasLiveTempoJogo.AtaquesCasa >= apostasLiveTempoJogo.AtaquesVisitante ){
                     listValoresMaiores.Add(apostasLiveTempoJogo.AtaquesCasa);
                     listValoresMenores.Add(apostasLiveTempoJogo.AtaquesVisitante);
-                    if(apostasLiveTempoJogo.RoiStake > 0){
-                        listValoresMaioresVencedor.Add(apostasLiveTempoJogo.AtaquesCasa);
-                        listValoresMenoresVencedor.Add(apostasLiveTempoJogo.AtaquesVisitante);
+                        if(apostasLiveTempoJogo.RoiStake > 0){
+                            listValoresMaioresVencedor.Add(apostasLiveTempoJogo.AtaquesCasa);
+                            listValoresMenoresVencedor.Add(apostasLiveTempoJogo.AtaquesVisitante);
+                        }
                     }
-                }
-                else{
-                    listValoresMaiores.Add(apostasLiveTempoJogo.AtaquesVisitante);
-                    listValoresMenores.Add(apostasLiveTempoJogo.AtaquesCasa);
-                    if(apostasLiveTempoJogo.RoiStake > 0){
-                        listValoresMaioresVencedor.Add(apostasLiveTempoJogo.AtaquesVisitante);
-                        listValoresMenoresVencedor.Add(apostasLiveTempoJogo.AtaquesCasa);
+                    else{
+                        listValoresMaiores.Add(apostasLiveTempoJogo.AtaquesVisitante);
+                        listValoresMenores.Add(apostasLiveTempoJogo.AtaquesCasa);
+                        if(apostasLiveTempoJogo.RoiStake > 0){
+                            listValoresMaioresVencedor.Add(apostasLiveTempoJogo.AtaquesVisitante);
+                            listValoresMenoresVencedor.Add(apostasLiveTempoJogo.AtaquesCasa);
+                        }
                     }
                 }
             }
 
             EstatisticasApostasLive estatisticasApostasLive = new EstatisticasApostasLive();
-            estatisticasApostasLive = GetEstatisticas(listValoresMaiores, listValoresMenores, listValoresMaioresVencedor, listValoresMenoresVencedor);
+
+             if(listValoresMaiores.Any() && listValoresMenores.Any())
+                estatisticasApostasLive = GetEstatisticas(listValoresMaiores, listValoresMenores, listValoresMaioresVencedor, listValoresMenoresVencedor);
+
             estatisticasApostasLive.Titulo = "Ataques";
 
             return estatisticasApostasLive;
@@ -483,26 +493,31 @@ namespace ProjetoGabrielAPI.Repositories
             List<decimal?> listValoresMaioresVencedor = new List<decimal?>();
             List<decimal?> listValoresMenoresVencedor = new List<decimal?>();
             foreach(var apostasLiveTempoJogo in listApostasLiveTempoJogo){
-                if(apostasLiveTempoJogo.AtaqPerigososCasa >= apostasLiveTempoJogo.AtaqPerigososVisitante ){
+                if(apostasLiveTempoJogo.AtaqPerigososCasa != null && apostasLiveTempoJogo.AtaqPerigososVisitante != null){
+                     if(apostasLiveTempoJogo.AtaqPerigososCasa >= apostasLiveTempoJogo.AtaqPerigososVisitante ){
                     listValoresMaiores.Add(apostasLiveTempoJogo.AtaqPerigososCasa);
                     listValoresMenores.Add(apostasLiveTempoJogo.AtaqPerigososVisitante);
-                    if(apostasLiveTempoJogo.RoiStake > 0){
-                        listValoresMaioresVencedor.Add(apostasLiveTempoJogo.AtaqPerigososCasa);
-                        listValoresMenoresVencedor.Add(apostasLiveTempoJogo.AtaqPerigososVisitante);
+                        if(apostasLiveTempoJogo.RoiStake > 0){
+                            listValoresMaioresVencedor.Add(apostasLiveTempoJogo.AtaqPerigososCasa);
+                            listValoresMenoresVencedor.Add(apostasLiveTempoJogo.AtaqPerigososVisitante);
+                        }
                     }
-                }
-                else{
-                    listValoresMaiores.Add(apostasLiveTempoJogo.AtaqPerigososVisitante);
-                    listValoresMenores.Add(apostasLiveTempoJogo.AtaqPerigososCasa);
-                    if(apostasLiveTempoJogo.RoiStake > 0){
-                        listValoresMaioresVencedor.Add(apostasLiveTempoJogo.AtaqPerigososVisitante);
-                        listValoresMenoresVencedor.Add(apostasLiveTempoJogo.AtaqPerigososCasa);
+                    else{
+                        listValoresMaiores.Add(apostasLiveTempoJogo.AtaqPerigososVisitante);
+                        listValoresMenores.Add(apostasLiveTempoJogo.AtaqPerigososCasa);
+                        if(apostasLiveTempoJogo.RoiStake > 0){
+                            listValoresMaioresVencedor.Add(apostasLiveTempoJogo.AtaqPerigososVisitante);
+                            listValoresMenoresVencedor.Add(apostasLiveTempoJogo.AtaqPerigososCasa);
+                        }
                     }
                 }
             }
 
             EstatisticasApostasLive estatisticasApostasLive = new EstatisticasApostasLive();
-            estatisticasApostasLive = GetEstatisticas(listValoresMaiores, listValoresMenores, listValoresMaioresVencedor, listValoresMenoresVencedor);
+
+             if(listValoresMaiores.Any() && listValoresMenores.Any())
+                estatisticasApostasLive = GetEstatisticas(listValoresMaiores, listValoresMenores, listValoresMaioresVencedor, listValoresMenoresVencedor);
+
             estatisticasApostasLive.Titulo = "Ataques Perigosos";
 
             return estatisticasApostasLive;
