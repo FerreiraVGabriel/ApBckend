@@ -30,7 +30,7 @@ namespace ProjetoGabrielAPI.Repositories
 
         public List<Times> Read()
         {
-            return _context.Times.ToList();
+            return _context.Times.OrderBy(teams=>teams.Nome).ToList();
             
         }
     }

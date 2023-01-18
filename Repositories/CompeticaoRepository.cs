@@ -30,7 +30,7 @@ namespace ProjetoGabrielAPI.Repositories
 
         public List<Competicao> Read()
         {
-            return _context.Competicao.ToList();
+            return _context.Competicao.OrderBy(competition=>competition.Nome).ToList();
             
         }
     }

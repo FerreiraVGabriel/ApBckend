@@ -37,19 +37,19 @@ namespace ProjetoGabrielAPI.Models
         public decimal? APM1Visitante {get; set;}
         public decimal? APM2Casa {get; set;}
         public decimal? APM2Visitante {get; set;}
-        public int? CACasa {get; set;}
-        public int? CAVisitante {get; set;}
-        public int? CFACasa {get; set;}
-        public int? CFAVisitante {get; set;}
+        public decimal? CACasa {get; set;}
+        public decimal? CAVisitante {get; set;}
+        public decimal? CFACasa {get; set;}
+        public decimal? CFAVisitante {get; set;}
         public decimal PL {get; set;}
         public decimal? RoiStake {get; set;}
 
-        public int? AtaquesCasa {get; set;}
-        public int? AtaquesVisitante {get; set;}
-        public int? AtaqPerigososCasa {get; set;}
-        public int? AtaqPerigososVisitante {get; set;}
-        public int? PosseBolaCasa {get; set;}
-        public int? PosseBolaVisitante {get; set;}
+        public decimal? AtaquesCasa {get; set;}
+        public decimal? AtaquesVisitante {get; set;}
+        public decimal? AtaqPerigososCasa {get; set;}
+        public decimal? AtaqPerigososVisitante {get; set;}
+        public decimal? PosseBolaCasa {get; set;}
+        public decimal? PosseBolaVisitante {get; set;}
         public int Tempo {get; set;}
 
     }

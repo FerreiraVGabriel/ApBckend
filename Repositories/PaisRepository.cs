@@ -28,7 +28,7 @@ namespace ProjetoGabrielAPI.Repositories
 
         public List<Pais> Read()
         {
-            return _context.Pais.ToList();
+            return _context.Pais.OrderBy(country=>country.Nome).ToList();
         }
     }
 }
