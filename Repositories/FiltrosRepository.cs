@@ -25,6 +25,11 @@ namespace ProjetoGabrielAPI.Repositories
         {
             return _context.Filtro.ToList();
         }
+
+        public Filtro Read(int filtroId)
+        {
+            return _context.Filtro.Where(x=>x.Id == filtroId).First();          
+        }
     }
 }
 

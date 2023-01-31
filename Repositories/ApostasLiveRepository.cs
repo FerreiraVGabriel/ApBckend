@@ -90,33 +90,8 @@ namespace ProjetoGabrielAPI.Repositories
             };
         }
 
-        public EstatisticasApostasLive GetEstatisticas(List<decimal?> listValoresMaiores, List<decimal?> listValoresMenores,
-                                                        List<decimal?> listValoresMaioresVencedor, List<decimal?> listValoresMenoresVencedor){
-            Estatisticas estatisticas = new Estatisticas();
-            EstatisticasApostasLive estatisticasApostasLive = new EstatisticasApostasLive();
-            estatisticas = _utilsProject.calculoMediaVarianciaDesvio(listValoresMaiores);
-            estatisticasApostasLive.DesvioPadraoValoresMaior = estatisticas.DesvioPadrao;
-            estatisticasApostasLive.MediaValoresMaior = estatisticas.Media;
-            estatisticasApostasLive.VarianciaValoresMaior = estatisticas.Variancia;
-            estatisticas = _utilsProject.calculoMediaVarianciaDesvio(listValoresMenores);
-            estatisticasApostasLive.DesvioPadraoValoresMenores = estatisticas.DesvioPadrao;
-            estatisticasApostasLive.MediaValoresMenores = estatisticas.Media;
-            estatisticasApostasLive.VarianciaValoresMenores = estatisticas.Variancia;
-            if(listValoresMaioresVencedor != null && listValoresMenoresVencedor != null){
-                estatisticas = _utilsProject.calculoMediaVarianciaDesvio(listValoresMaiores);
-                estatisticasApostasLive.DesvioPadraoValoresMaiorVencedor = estatisticas.DesvioPadrao;
-                estatisticasApostasLive.MediaValoresMaiorVencedor = estatisticas.Media;
-                estatisticasApostasLive.VarianciaValoresMaiorVencedor = estatisticas.Variancia;
-                estatisticas = _utilsProject.calculoMediaVarianciaDesvio(listValoresMenores);
-                estatisticasApostasLive.DesvioPadraoValoresMenoresVencedor = estatisticas.DesvioPadrao;
-                estatisticasApostasLive.MediaValoresMenoresVencedor = estatisticas.Media;
-                estatisticasApostasLive.VarianciaValoresMenoresVencedor = estatisticas.Variancia;
-            }
 
-            return estatisticasApostasLive;
-        }
-
-         public EstatisticasApostasLive GetStatistics(List<decimal?> home, List<decimal?> away, List<decimal?> roi){
+         public EstatisticasApostasLive GetEstatisticas(List<decimal?> home, List<decimal?> away, List<decimal?> roi){
 
             List<decimal?> listValoresMaiores = new List<decimal?>();
             List<decimal?> listValoresMenores = new List<decimal?>();
@@ -180,7 +155,7 @@ namespace ProjetoGabrielAPI.Repositories
 
             EstatisticasApostasLive liveBetsStatistics = new EstatisticasApostasLive();
            if(home[0] != null && away[0] != null && roi[0] != null)
-                liveBetsStatistics = GetStatistics(home, away, roi);
+                liveBetsStatistics = GetEstatisticas(home, away, roi);
 
             liveBetsStatistics.Titulo = "MH1";
 
@@ -197,7 +172,7 @@ namespace ProjetoGabrielAPI.Repositories
 
             EstatisticasApostasLive liveBetsStatistics = new EstatisticasApostasLive();
             if(home[0] != null && away[0] != null && roi[0] != null)
-                liveBetsStatistics = GetStatistics(home, away, roi);
+                liveBetsStatistics = GetEstatisticas(home, away, roi);
 
             liveBetsStatistics.Titulo = "MH2";
 
@@ -214,7 +189,7 @@ namespace ProjetoGabrielAPI.Repositories
 
             EstatisticasApostasLive liveBetsStatistics = new EstatisticasApostasLive();
             if(home[0] != null && away[0] != null && roi[0] != null)
-                liveBetsStatistics = GetStatistics(home, away, roi);
+                liveBetsStatistics = GetEstatisticas(home, away, roi);
 
             liveBetsStatistics.Titulo = "MH3";
 
@@ -231,7 +206,7 @@ namespace ProjetoGabrielAPI.Repositories
 
             EstatisticasApostasLive liveBetsStatistics = new EstatisticasApostasLive();
             if(home[0] != null && away[0] != null && roi[0] != null)
-                liveBetsStatistics = GetStatistics(home, away, roi);
+                liveBetsStatistics = GetEstatisticas(home, away, roi);
 
             liveBetsStatistics.Titulo = "EXG";
 
@@ -248,7 +223,7 @@ namespace ProjetoGabrielAPI.Repositories
 
             EstatisticasApostasLive liveBetsStatistics = new EstatisticasApostasLive();
             if(home[0] != null && away[0] != null && roi[0] != null)
-                liveBetsStatistics = GetStatistics(home, away, roi);
+                liveBetsStatistics = GetEstatisticas(home, away, roi);
 
             liveBetsStatistics.Titulo = "APM1";
 
@@ -265,7 +240,7 @@ namespace ProjetoGabrielAPI.Repositories
 
             EstatisticasApostasLive liveBetsStatistics = new EstatisticasApostasLive();
             if(home[0] != null && away[0] != null && roi[0] != null)
-                liveBetsStatistics = GetStatistics(home, away, roi);
+                liveBetsStatistics = GetEstatisticas(home, away, roi);
 
             liveBetsStatistics.Titulo = "APM2";
 
@@ -282,7 +257,7 @@ namespace ProjetoGabrielAPI.Repositories
 
             EstatisticasApostasLive liveBetsStatistics = new EstatisticasApostasLive();
             if(home[0] != null && away[0] != null && roi[0] != null)
-                liveBetsStatistics = GetStatistics(home, away, roi);
+                liveBetsStatistics = GetEstatisticas(home, away, roi);
 
             liveBetsStatistics.Titulo = "CA";
 
@@ -299,7 +274,7 @@ namespace ProjetoGabrielAPI.Repositories
 
             EstatisticasApostasLive liveBetsStatistics = new EstatisticasApostasLive();
             if(home[0] != null && away[0] != null && roi[0] != null)
-                liveBetsStatistics = GetStatistics(home, away, roi);
+                liveBetsStatistics = GetEstatisticas(home, away, roi);
 
             liveBetsStatistics.Titulo = "CFA";
 
@@ -316,7 +291,7 @@ namespace ProjetoGabrielAPI.Repositories
 
             EstatisticasApostasLive liveBetsStatistics = new EstatisticasApostasLive();
             if(home[0] != null && away[0] != null && roi[0] != null)
-                liveBetsStatistics = GetStatistics(home, away, roi);
+                liveBetsStatistics = GetEstatisticas(home, away, roi);
 
             liveBetsStatistics.Titulo = "Posse de bola";
 
@@ -333,7 +308,7 @@ namespace ProjetoGabrielAPI.Repositories
 
             EstatisticasApostasLive liveBetsStatistics = new EstatisticasApostasLive();
             if(home[0] != null && away[0] != null && roi[0] != null)
-                liveBetsStatistics = GetStatistics(home, away, roi);
+                liveBetsStatistics = GetEstatisticas(home, away, roi);
 
             liveBetsStatistics.Titulo = "Ataques";
 
@@ -350,7 +325,7 @@ namespace ProjetoGabrielAPI.Repositories
 
             EstatisticasApostasLive liveBetsStatistics = new EstatisticasApostasLive();
             if(home[0] != null && away[0] != null && roi[0] != null)
-                liveBetsStatistics = GetStatistics(home, away, roi);
+                liveBetsStatistics = GetEstatisticas(home, away, roi);
 
             liveBetsStatistics.Titulo = "Ataques perigosos";
 

@@ -1,9 +1,12 @@
+using System.Linq;
+using System;
 using Microsoft.VisualBasic.CompilerServices;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoGabrielAPI.Models;
 using ProjetoGabrielAPI.Repositories;
 using ProjetoGabrielAPI.Shared;
+using ProjetoGabrielAPI.Interfaces;
 
 namespace ApostasBackend.Controllers{
 
@@ -16,6 +19,15 @@ namespace ApostasBackend.Controllers{
         public IActionResult Get([FromServices]IApostasRepository repository)
         {
             var apostas = repository.Read();
+            return Ok(apostas);
+        }
+
+        [HttpGet("{idFiltro}")]
+        [EnableCors("AllowDev")]
+        public IActionResult GetApostasPorData(int idFiltro, [FromServices]IApostasRepository repository, [FromServices]IFiltrosRepository repositoryFiltro)
+        {
+            Filtro filtro = repositoryFiltro.Read(idFiltro);
+            var apostas = repository.Read().Where(x=>x.DataAposta>= filtro.DataInicio && x.DataAposta<= filtro.DataFim);
             return Ok(apostas);
         }
 

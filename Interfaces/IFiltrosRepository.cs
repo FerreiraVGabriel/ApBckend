@@ -8,6 +8,8 @@ namespace ProjetoGabrielAPI.Interfaces
     {
         List<Filtro> Read();
 
+        Filtro Read(int idFiltro);
+
         void Create (Filtro filtro);
     }
 }

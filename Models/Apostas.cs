@@ -8,12 +8,12 @@ namespace ProjetoGabrielAPI.Models
     public class Apostas
     {
         public int Id {get; set;}
-
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd/MM/yyyy}")]
         public DateTime DataAposta {get; set;}
         public decimal Stake {get; set;}
         public decimal PL {get; set;}
         public decimal RoiStake {get; set;}
+        public bool AnalisePre {get; set;}
+        public bool EntradaPre {get; set;}
 
         [ForeignKey("CompeticaoId")]
         [Required]
