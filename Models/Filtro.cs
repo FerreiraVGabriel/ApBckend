@@ -13,6 +13,10 @@ namespace ProjetoGabrielAPI.Models
         public DateTime DataInicio {get; set;}
         [Required]
         public DateTime DataFim {get; set;}
+        [Required]
+        public int Mes {get; set;}
+        [Required]
+        public int Ano {get; set;}
 
     }
 }

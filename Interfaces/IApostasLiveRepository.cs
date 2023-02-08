@@ -13,6 +13,7 @@ namespace ProjetoGabrielAPI.Interfaces
         void Create (ApostasLive apostas);
 
         List<ApostasLiveComTempo> GetEstatisticasApostasLive(List<ApostasLive> apostasLive);
+
     }
 }
    

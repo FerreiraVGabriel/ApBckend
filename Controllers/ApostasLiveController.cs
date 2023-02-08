@@ -23,12 +23,12 @@ namespace ApostasLiveBackend.Controllers{
 
         [HttpPost]
         [EnableCors("AllowDev")]
-        public IActionResult Post([FromForm]ApostasLive apostasLive, [FromServices]IApostasLiveRepository repository,[FromServices] UtilsProject utilsProject)
+        public IActionResult Post([FromForm]ApostasLive apostasLive, [FromServices]IApostasLiveRepository repository)
         {
             if(!ModelState.IsValid)
                 return BadRequest();
 
-            apostasLive.RoiStake = utilsProject.retornaPorcentagem(apostasLive.Stake, apostasLive.PL);
+            apostasLive.RoiStake = UtilsProject.retornaRoiStake(apostasLive.Stake, apostasLive.PL);
             
             repository.Create(apostasLive);
             return Ok();
@@ -36,7 +36,7 @@ namespace ApostasLiveBackend.Controllers{
 
         [HttpGet("{idMercado}")]
         [EnableCors("AllowDev")]
-        public IActionResult GetApostasLive(int idMercado,[FromServices]IApostasLiveRepository repository,[FromServices] UtilsProject utilsProject)
+        public IActionResult GetApostasLive(int idMercado,[FromServices]IApostasLiveRepository repository)
         {
             List<ApostasLive> apostasLive = repository.Read(idMercado).ToList();
 

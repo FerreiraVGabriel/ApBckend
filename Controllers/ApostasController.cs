@@ -33,12 +33,12 @@ namespace ApostasBackend.Controllers{
 
         [HttpPost]
         [EnableCors("AllowDev")]
-        public IActionResult Post([FromForm]Apostas aposta, [FromServices]IApostasRepository repository,[FromServices] UtilsProject utilsProject)
+        public IActionResult Post([FromForm]Apostas aposta, [FromServices]IApostasRepository repository)
         {
             if(!ModelState.IsValid)
                 return BadRequest();
 
-            aposta.RoiStake = utilsProject.retornaPorcentagem(aposta.Stake, aposta.PL);
+            aposta.RoiStake = UtilsProject.retornaRoiStake(aposta.Stake, aposta.PL);
 
             repository.Create(aposta);
             return Ok();
