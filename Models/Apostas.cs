@@ -12,8 +12,6 @@ namespace ProjetoGabrielAPI.Models
         public decimal Stake {get; set;}
         public decimal PL {get; set;}
         public decimal RoiStake {get; set;}
-        public bool AnalisePre {get; set;}
-        public bool EntradaPre {get; set;}
 
         [ForeignKey("CompeticaoId")]
         [Required]
