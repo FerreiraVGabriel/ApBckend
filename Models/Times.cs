@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -10,9 +11,13 @@ namespace ProjetoGabrielAPI.Models
         public int Id {get; set;}
         // [Required]
         public string Nome {get; set;}
-        // [ForeignKey("PaisId")]
-        // [Required]
+        [ForeignKey("PaisId")]
+        [Required]
         public int Pais_id {get; set;}
+
+        public Pais Pais { get; set; }
+
+        
 
     }
 }

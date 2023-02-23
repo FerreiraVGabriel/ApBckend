@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using ProjetoGabrielAPI.Models;
 
 namespace ProjetoGabrielAPI.Repositories
@@ -30,7 +31,8 @@ namespace ProjetoGabrielAPI.Repositories
 
         public List<Times> Read()
         {
-            return _context.Times.OrderBy(teams=>teams.Nome).ToList();
+            //return _context.Times.OrderBy(teams=>teams.Nome).ToList();
+            return _context.Times.Include(x=>x.Pais).OrderBy(teams=>teams.Nome).ToList();
             
         }
     }

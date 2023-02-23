@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using ProjetoGabrielAPI.Models;
 
 namespace ProjetoGabrielAPI.Repositories
@@ -29,7 +30,16 @@ namespace ProjetoGabrielAPI.Repositories
 
         public List<Apostas> Read()
         {
-            return _context.Apostas.OrderBy(bet=>bet.DataAposta).ToList();
+            //return _context.Apostas.OrderBy(bet=>bet.DataAposta).ToList();
+            var apostas =  _context.Apostas.Include(x=>x.Competicao).Include(x=>x.Mercados).Include(x=>x.TimeMandante)
+                                    .Include(x=>x.TimeVisitante).OrderBy(bet=>bet.DataAposta).ToList();
+            foreach(var aposta in apostas){
+                aposta.CompeticaoNome = aposta.Competicao.Nome;
+                aposta.MercadoNome = aposta.Mercados.Nome;
+                aposta.TimeMandanteNome = aposta.TimeMandante.Nome;
+                aposta.TimeVisitanteNome = aposta.TimeVisitante.Nome;
+            }
+            return apostas;
         }
     }
 }
