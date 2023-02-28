@@ -1,5 +1,8 @@
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using ProjetoGabrielAPI.Interfaces;
 using ProjetoGabrielAPI.Models;
 using ProjetoGabrielAPI.Repositories;
 
@@ -15,6 +18,18 @@ namespace MercadosBackend.Controllers{
         {
             var mercados = repository.Read();
             return Ok(mercados);
+        }
+
+        [HttpGet("{idFiltro}")]
+        [EnableCors("AllowDev")]
+        public IActionResult GetMercadosInfo(int idFiltro,[FromServices]IMercadosRepository repository,[FromServices]IApostasRepository repositoryApostas, [FromServices]IFiltrosRepository repositoryFiltro)
+        {
+            Filtro filtro = repositoryFiltro.Read(idFiltro);
+            List<Apostas> apostas = repositoryApostas.ReadApostasPorData(filtro.DataInicio, filtro.DataFim);
+            List<Mercados> mercados = repository.Read();
+            List<MercadosInfo> listMercadosInfo = repository.ReadMercadoInfo(apostas, mercados);
+            
+            return Ok(listMercadosInfo);
         }
 
         [HttpPost]

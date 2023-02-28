@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoGabrielAPI.Interfaces;
@@ -14,7 +15,7 @@ namespace PaisController.Controllers{
         [EnableCors("AllowDev")]
         public IActionResult Get([FromServices]IFiltrosRepository repository)
         {
-            var filtros = repository.Read();
+            var filtros = repository.Read().OrderBy(x=>x.DataInicio).OrderBy(x=>x.Nome);
             return Ok(filtros);
         }
 
