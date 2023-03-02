@@ -10,6 +10,6 @@ namespace ProjetoGabrielAPI.Interfaces
 
         void Create (Mercados mercados);
 
-        List<MercadosInfo> ReadMercadoInfo(List<Apostas> apostas, List<Mercados> mercados);
+        List<ApostasInfo> ReadMercadoInfo(List<Apostas> apostas, List<Mercados> mercados);
     }
 }

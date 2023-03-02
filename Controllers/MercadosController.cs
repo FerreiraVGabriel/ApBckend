@@ -27,7 +27,7 @@ namespace MercadosBackend.Controllers{
             Filtro filtro = repositoryFiltro.Read(idFiltro);
             List<Apostas> apostas = repositoryApostas.ReadApostasPorData(filtro.DataInicio, filtro.DataFim);
             List<Mercados> mercados = repository.Read();
-            List<MercadosInfo> listMercadosInfo = repository.ReadMercadoInfo(apostas, mercados);
+            List<ApostasInfo> listMercadosInfo = repository.ReadMercadoInfo(apostas, mercados);
             
             return Ok(listMercadosInfo);
         }

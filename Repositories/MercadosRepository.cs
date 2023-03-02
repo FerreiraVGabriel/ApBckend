@@ -29,9 +29,9 @@ namespace ProjetoGabrielAPI.Repositories
             
         }
 
-        public List<MercadosInfo> ReadMercadoInfo(List<Apostas> apostas, List<Mercados> mercados){
+        public List<ApostasInfo> ReadMercadoInfo(List<Apostas> apostas, List<Mercados> mercados){
             List<Apostas> apostasFiltro = new List<Apostas>();
-            List<MercadosInfo> listMercadosInfo = new List<MercadosInfo>();
+            List<ApostasInfo> listMercadosInfo = new List<ApostasInfo>();
 
             int totalMes = 12;
 
@@ -52,14 +52,14 @@ namespace ProjetoGabrielAPI.Repositories
                 }
             }
 
-            return listMercadosInfo.OrderBy(x=>x.MercadoNome).ToList();
+            return listMercadosInfo.OrderBy(x=>x.Titulo).ToList();
         }
 
-        public MercadosInfo GetMercadosInfo(List<Apostas> listApostasFiltro, int mes){
+        public ApostasInfo GetMercadosInfo(List<Apostas> listApostasFiltro, int mes){
 
-            MercadosInfo mercadosInfo = new MercadosInfo();
+            ApostasInfo mercadosInfo = new ApostasInfo();
 
-            mercadosInfo.MercadoNome = listApostasFiltro[0].MercadoNome;
+            mercadosInfo.Titulo = listApostasFiltro[0].MercadoNome;
             mercadosInfo.PeriodoNome = mes.ToString();
             mercadosInfo.LucroPerda = listApostasFiltro.Select(x=>x.PL).Sum();
             mercadosInfo.Green = listApostasFiltro.Where(x=> x.PL >= 0).Count();

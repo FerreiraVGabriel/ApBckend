@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjetoGabrielAPI.Models
 {
-    public class MercadosInfo
+    public class ApostasInfo
     {
-        public String MercadoNome {get; set;}
+        public String Titulo {get; set;}
         public String PeriodoNome {get; set;}
         public decimal LucroPerda {get; set;}
         public int Green {get; set;}
