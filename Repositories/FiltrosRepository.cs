@@ -23,7 +23,7 @@ namespace ProjetoGabrielAPI.Repositories
 
         public List<Filtro> Read()
         {
-            return _context.Filtro.ToList();
+            return _context.Filtro.OrderBy(x=>x.Id).ToList();
         }
 
         public Filtro Read(int filtroId)

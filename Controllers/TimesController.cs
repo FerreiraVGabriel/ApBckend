@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoGabrielAPI.Interfaces;
 using ProjetoGabrielAPI.Models;
-using ProjetoGabrielAPI.Repositories;
 
 namespace TimesBackend.Controllers{
 
@@ -24,9 +23,18 @@ namespace TimesBackend.Controllers{
         public IActionResult GetApostasInfo(int idFiltro,[FromServices]ITimesRepository repository,[FromServices]IApostasRepository repositoryApostas, [FromServices]IFiltrosRepository repositoryFiltro)
         {
             Filtro filtro = repositoryFiltro.Read(idFiltro);
+
+            string ano ="";
+            List<Times> times = new List<Times>();
+            if(filtro.Mes == 0){
+                times = repository.Read();
+                ano = filtro.Ano.ToString();
+            }
+            else
+                times = repository.Read();
+
             List<Apostas> apostas = repositoryApostas.ReadApostasPorData(filtro.DataInicio, filtro.DataFim);
-            List<Times> times = repository.Read();
-            List<ApostasInfo> listTimesInfo = repository.ReadTimesInfo(apostas, times);
+            List<ApostasInfo> listTimesInfo = repository.ReadTimesInfo(apostas, times, ano);
             
             return Ok(listTimesInfo);
         }

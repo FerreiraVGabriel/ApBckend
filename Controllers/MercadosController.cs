@@ -25,9 +25,14 @@ namespace MercadosBackend.Controllers{
         public IActionResult GetMercadosInfo(int idFiltro,[FromServices]IMercadosRepository repository,[FromServices]IApostasRepository repositoryApostas, [FromServices]IFiltrosRepository repositoryFiltro)
         {
             Filtro filtro = repositoryFiltro.Read(idFiltro);
+
+            string ano ="";
+            if(filtro.Mes == 0)
+                ano = filtro.Ano.ToString();
+                
             List<Apostas> apostas = repositoryApostas.ReadApostasPorData(filtro.DataInicio, filtro.DataFim);
             List<Mercados> mercados = repository.Read();
-            List<ApostasInfo> listMercadosInfo = repository.ReadMercadoInfo(apostas, mercados);
+            List<ApostasInfo> listMercadosInfo = repository.ReadMercadoInfo(apostas, mercados, ano);
             
             return Ok(listMercadosInfo);
         }

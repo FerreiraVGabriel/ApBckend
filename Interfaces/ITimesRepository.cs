@@ -9,6 +9,6 @@ namespace ProjetoGabrielAPI.Interfaces
 
         void Create (Times competicao);
 
-        List<ApostasInfo> ReadTimesInfo(List<Apostas> apostas, List<Times> times);
+        List<ApostasInfo> ReadTimesInfo(List<Apostas> apostas, List<Times> times, string ano);
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CJm5f8wIPwT5OhF9w3xmHKBXPUq+1JglM6hxEThVgr343LnI16JwkznfGrJxa+vUQHCABCTdbj6NcMrPogL2sw==",
+  "dgSpecHash": "gKbYreH99cvj9s0GQqCXC0fwFES/1ie6sxwBk/WF8APK/VsQNcqEFAHh2Gmlvpgt73bU12gMCHvQfsMQYluf6g==",
   "success": true,
-  "projectFilePath": "C:\\estudos\\ProjetoGabrielAPI\\ApBckend\\ProjetoGabrielAPI.csproj",
+  "projectFilePath": "C:\\Documentos\\estudos\\ApAPI\\ApBckend\\ProjetoGabrielAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gabriel.vitor\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\gabriel.vitor\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
