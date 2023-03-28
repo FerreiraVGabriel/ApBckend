@@ -32,6 +32,7 @@ namespace ProjetoGabrielAPI.Repositories
                 aposta.MercadoNome = aposta.Mercados.Nome;
                 aposta.TimeMandanteNome = aposta.TimeMandante.Nome;
                 aposta.TimeVisitanteNome = aposta.TimeVisitante.Nome;
+                aposta.DataApostaString = aposta.DataAposta.ToString();
             }
             return apostas;
         }
@@ -58,6 +59,22 @@ namespace ProjetoGabrielAPI.Repositories
             return apostas;
         }
 
+        public void Update(int id, Apostas aposta)
+        {
+            var apostaNew = _context.Apostas.Find(id);
+
+            apostaNew.DataAposta = Convert.ToDateTime(aposta.DataApostaString);
+            apostaNew.Stake = aposta.Stake;
+            apostaNew.PL = aposta.PL;
+            apostaNew.Competicao_id = aposta.Competicao_id;
+            apostaNew.Mandante_id = aposta.Mandante_id;
+            apostaNew.Visitante_id = aposta.Visitante_id;
+            apostaNew.Mercados_id = aposta.Mercados_id;
+
+
+            _context.Entry(apostaNew).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
     }
 }
 

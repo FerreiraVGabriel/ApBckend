@@ -11,5 +11,7 @@ namespace ProjetoGabrielAPI.Interfaces
         List<Apostas> ReadApostasPorData(DateTime dataInicio, DateTime dataFim);
 
         void Create (Apostas apostas);
+
+        void Update(int id, Apostas apostas);
     }
 }

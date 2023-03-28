@@ -10,6 +10,9 @@ namespace ProjetoGabrielAPI.Models
     {
         public int Id {get; set;}
         public DateTime DataAposta {get; set;}
+
+        [NotMapped]
+        public string DataApostaString  { get; set; }
         public decimal Stake {get; set;}
         public decimal PL {get; set;}
         public decimal RoiStake {get; set;}
