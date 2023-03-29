@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using ProjetoGabrielAPI.Interfaces;
 using ProjetoGabrielAPI.Models;
+using ProjetoGabrielAPI.Shared;
 
 namespace ProjetoGabrielAPI.Repositories
 {
@@ -70,6 +71,7 @@ namespace ProjetoGabrielAPI.Repositories
             apostaNew.Mandante_id = aposta.Mandante_id;
             apostaNew.Visitante_id = aposta.Visitante_id;
             apostaNew.Mercados_id = aposta.Mercados_id;
+            apostaNew.RoiStake = UtilsProject.retornaRoiStake(apostaNew.Stake, apostaNew.PL);
 
 
             _context.Entry(apostaNew).State = EntityState.Modified;

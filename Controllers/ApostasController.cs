@@ -19,7 +19,7 @@ namespace ApostasBackend.Controllers{
         [EnableCors("AllowDev")]
         public IActionResult Get([FromServices]IApostasRepository repository)
         {
-            var apostas = repository.Read().ToArray();
+            var apostas = repository.Read().Take(50).OrderByDescending(x=>x.DataAposta).ToList();
 
 
             return Ok(apostas);
@@ -76,7 +76,7 @@ namespace ApostasBackend.Controllers{
             return Ok(aposta);
         }
 
-        [HttpPut("{id}")]
+        [HttpPost("{id}")]
         [EnableCors("AllowDev")]
         public IActionResult Update(int id,[FromForm]Apostas aposta,[FromServices]IApostasRepository repository)
         {
