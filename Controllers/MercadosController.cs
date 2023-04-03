@@ -16,7 +16,7 @@ namespace MercadosBackend.Controllers{
         [EnableCors("AllowDev")]
         public IActionResult Get([FromServices]IMercadosRepository repository)
         {
-            var mercados = repository.Read();
+            var mercados = repository.Read().OrderBy(x=>x.Nome);
             return Ok(mercados);
         }
 

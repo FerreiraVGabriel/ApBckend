@@ -19,7 +19,9 @@ namespace ApostasBackend.Controllers{
         [EnableCors("AllowDev")]
         public IActionResult Get([FromServices]IApostasRepository repository)
         {
-            var apostas = repository.Read().Take(50).OrderByDescending(x=>x.DataAposta).ToList();
+            var dateNow = DateTime.Now;
+            //var apostas = repository.Read().Where(x=>x.DataAposta.Month == dateNow.Month).ToList();
+            var apostas = repository.Read().ToList();
 
 
             return Ok(apostas);
