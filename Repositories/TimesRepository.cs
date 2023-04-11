@@ -52,7 +52,7 @@ namespace ProjetoGabrielAPI.Repositories
                 mercadosInfoDetalhes.PeriodoNome = _utilsProject.RetornaMes(mes);
                 
             mercadosInfoDetalhes.LucroPerda = listApostasFiltro.Select(x=>x.PL).Sum();
-            mercadosInfoDetalhes.Green = listApostasFiltro.Where(x=> x.PL >= 0).Count();
+            mercadosInfoDetalhes.Green = listApostasFiltro.Where(x=> x.PL > 0).Count();
             mercadosInfoDetalhes.Red = listApostasFiltro.Where(x=> x.PL < 0).Count();
             mercadosInfoDetalhes.NumApostas = listApostasFiltro.Count();
 
@@ -63,7 +63,7 @@ namespace ProjetoGabrielAPI.Repositories
             List<Apostas> apostasFiltro = new List<Apostas>();
             List<ApostasInfo> listTimesInfo = new List<ApostasInfo>();
 
-            foreach(Times time  in times){
+            foreach(Times time in times){
                 
                 ApostasInfo timesInfo = new ApostasInfo();
                 timesInfo.Titulo = time.Nome;

@@ -15,7 +15,7 @@ namespace PaisController.Controllers{
         [EnableCors("AllowDev")]
         public IActionResult Get([FromServices]IFiltrosRepository repository)
         {
-            var filtros = repository.Read().OrderBy(x=>x.DataInicio).OrderBy(x=>x.Nome);
+            var filtros = repository.Read();
             return Ok(filtros);
         }
 

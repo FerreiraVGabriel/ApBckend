@@ -12,10 +12,12 @@ namespace ProjetoGabrielAPI.Repositories
     public class ApostasRepository : IApostasRepository
     {
         private readonly DataContext _context;
+        private readonly UtilsProject _utilsProject;
 
-        public ApostasRepository(DataContext context)
+        public ApostasRepository(DataContext context, UtilsProject utilsProject)
         {
             _context = context;
+            _utilsProject = utilsProject;
         }
 
         public void Create(Apostas apostas)
@@ -76,6 +78,11 @@ namespace ProjetoGabrielAPI.Repositories
 
             _context.Entry(apostaNew).State = EntityState.Modified;
             _context.SaveChanges();
+        }
+
+         public List<Apostas> FiltroAposta(List<Apostas> apostas, string page, string pageSize)
+        {
+            return _utilsProject.filtroPaginacao(apostas, Convert.ToInt32(page, 10), Convert.ToInt32(pageSize, 10));
         }
     }
 }

@@ -69,5 +69,9 @@ namespace ProjetoGabrielAPI.Shared
                 
             }
         }
+
+        public List<T> filtroPaginacao<T>(List<T> lista, int page, int pageSize){
+            return lista.GetRange((page - 1) * pageSize, page * pageSize);
+        }
     }
 }

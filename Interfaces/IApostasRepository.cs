@@ -13,5 +13,7 @@ namespace ProjetoGabrielAPI.Interfaces
         void Create (Apostas apostas);
 
         void Update(int id, Apostas apostas);
+        
+        List<Apostas> FiltroAposta(List<Apostas> apostas, string page, string pageSize);
     }
 }

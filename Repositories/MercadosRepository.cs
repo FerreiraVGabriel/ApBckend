@@ -77,7 +77,7 @@ namespace ProjetoGabrielAPI.Repositories
                 mercadosInfoDetalhes.PeriodoNome = _utilsProject.RetornaMes(mes);
 
             mercadosInfoDetalhes.LucroPerda = listApostasFiltro.Select(x=>x.PL).Sum();
-            mercadosInfoDetalhes.Green = listApostasFiltro.Where(x=> x.PL >= 0).Count();
+            mercadosInfoDetalhes.Green = listApostasFiltro.Where(x=> x.PL > 0).Count();
             mercadosInfoDetalhes.Red = listApostasFiltro.Where(x=> x.PL < 0).Count();
             mercadosInfoDetalhes.NumApostas = listApostasFiltro.Count();
 

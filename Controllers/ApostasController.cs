@@ -1,15 +1,14 @@
 using System.Linq;
 using System;
-using Microsoft.VisualBasic.CompilerServices;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoGabrielAPI.Models;
-using ProjetoGabrielAPI.Repositories;
 using ProjetoGabrielAPI.Shared;
 using ProjetoGabrielAPI.Interfaces;
-using System.Collections.Generic;
 
-namespace ApostasBackend.Controllers{
+
+namespace ApostasBackend.Controllers
+{
 
     [Route("apostas")]
     [ApiController]
@@ -19,40 +18,49 @@ namespace ApostasBackend.Controllers{
         [EnableCors("AllowDev")]
         public IActionResult Get([FromServices]IApostasRepository repository)
         {
-            var dateNow = DateTime.Now;
-            //var apostas = repository.Read().Where(x=>x.DataAposta.Month == dateNow.Month).ToList();
-            var apostas = repository.Read().ToList();
-
+            var apostas = repository.Read();
 
             return Ok(apostas);
         }
 
-        [HttpGet("{idFiltro}/{idMercados}/{tipoFiltro}")]
+        [HttpGet("{search}/{page}")]
         [EnableCors("AllowDev")]
-        public IActionResult GetApostasPorData(int idFiltro, string idMercados, string tipoFiltro, [FromServices]IApostasRepository repository, [FromServices]IFiltrosRepository repositoryFiltro)
-        {
-            List<int> listidsMercados = new List<int>();
-            if(!string.IsNullOrEmpty(idMercados) && idMercados != "null")
-                listidsMercados = idMercados.Split(',').Select(Int32.Parse).ToList();
+        public IActionResult GetApostasPaginacao(string search,string page, [FromServices]IApostasRepository repository){
+            if(search != "null")
+                return null;
 
-
-            Filtro filtro = repositoryFiltro.Read(idFiltro);
-            List<Apostas> apostas = new List<Apostas>();
-
-            if(tipoFiltro == "Somente essa aposta")
-               apostas =  repository.Read().Where(x=>x.DataAposta>= filtro.DataInicio && x.DataAposta<= filtro.DataFim &&
-                            listidsMercados.Contains(x.Mercados_id)).ToList();
-
-            else if(tipoFiltro == "Exclui Aposta(s)")
-                apostas =  repository.Read().Where(x=>x.DataAposta>= filtro.DataInicio && x.DataAposta<= filtro.DataFim &&
-                            !listidsMercados.Contains(x.Mercados_id)).ToList();
-
-            else{
-                apostas =  repository.Read().Where(x=>x.DataAposta>= filtro.DataInicio && x.DataAposta<= filtro.DataFim).ToList();
-            }
-
+            string pageSize = "10";
+            var apostas = repository.Read().OrderByDescending(x=>x.DataAposta).ToList();
+            apostas = repository.FiltroAposta(apostas,page, pageSize);
             return Ok(apostas);
         }
+
+        // [HttpGet("{idFiltro}/{idMercados}/{tipoFiltro}")]
+        // [EnableCors("AllowDev")]
+        // public IActionResult GetApostasPorData(int idFiltro, string idMercados, string tipoFiltro, [FromServices]IApostasRepository repository, [FromServices]IFiltrosRepository repositoryFiltro)
+        // {
+        //     List<int> listidsMercados = new List<int>();
+        //     if(!string.IsNullOrEmpty(idMercados) && idMercados != "null")
+        //         listidsMercados = idMercados.Split(',').Select(Int32.Parse).ToList();
+
+
+        //     Filtro filtro = repositoryFiltro.Read(idFiltro);
+        //     List<Apostas> apostas = new List<Apostas>();
+
+        //     if(tipoFiltro == "Somente essa aposta")
+        //        apostas =  repository.Read().Where(x=>x.DataAposta>= filtro.DataInicio && x.DataAposta<= filtro.DataFim &&
+        //                     listidsMercados.Contains(x.Mercados_id)).ToList();
+
+        //     else if(tipoFiltro == "Exclui Aposta(s)")
+        //         apostas =  repository.Read().Where(x=>x.DataAposta>= filtro.DataInicio && x.DataAposta<= filtro.DataFim &&
+        //                     !listidsMercados.Contains(x.Mercados_id)).ToList();
+
+        //     else{
+        //         apostas =  repository.Read().Where(x=>x.DataAposta>= filtro.DataInicio && x.DataAposta<= filtro.DataFim).ToList();
+        //     }
+
+        //     return Ok(apostas);
+        // }
 
         [HttpPost]
         [EnableCors("AllowDev")]
